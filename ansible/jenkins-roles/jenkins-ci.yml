@@ -13,6 +13,11 @@
   loop:
     "{{ lookup('dict', repos) }}"
 
+- name: "Update repository"
+  apt:
+    name: update
+    update_cache: yes
+
 - name: "Install Jenkins and Java"
   apt:
     name: "{{ item.value.name }}"

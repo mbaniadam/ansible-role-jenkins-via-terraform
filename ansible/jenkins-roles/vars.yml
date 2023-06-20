@@ -1,0 +1,15 @@
+---
+# vars for jenkins
+java: "java-1.8.0"
+repos:
+  jenkins:
+    name: "jenkins"
+    url: "https://pkg.jenkins.io/debian-stable/"
+    description: "Jenkins repo"
+
+packages:
+  java:
+    name: "{{ java }}"
+  jenkins:
+    name: "jenkins"
+    
