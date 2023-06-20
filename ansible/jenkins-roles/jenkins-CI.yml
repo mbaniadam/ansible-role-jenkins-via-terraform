@@ -1,0 +1,27 @@
+---
+# Task files for jenkins in Ubuntu
+- name: "add jenkins key"
+  apt_key:
+    state: present
+    url: "{{ jenkins_key_url }}"
+
+- name: "add repository"
+  apt_repository: 
+    filename: "{{ item.value.name }}"
+    repo: "{{ item.value.url }}"
+    description: "{{ item.value.description }}"
+  loop:
+    "{{ lookup('dict', repos) }}"
+
+- name: "Install Jenkins and Java"
+  apt:
+    name: "{{ item.value.name }}"
+    state: present
+  loop:
+    "{{lookup('dict', packages) }}"
+
+- name: "Starting jenkins" 
+  service:
+    name: "jenkins"
+    state: started
+    enables: yes

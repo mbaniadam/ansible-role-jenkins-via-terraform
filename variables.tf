@@ -53,7 +53,7 @@ variable "vm_linked_clone" {
   default     = "false"
 }
 
-variable "vm_ip" {
+variable "vm_ipv4_address" {
   description = "Ip used for the vSpgere virtual machine"
 }
 
@@ -61,13 +61,13 @@ variable "vm_netmask" {
   description = "Netmask used for the vSphere virtual machine (example: 24)"
 }
 
-variable "vm_gateway" {
+variable "vm_ipv4_gateway" {
   description = "Gateway for the vSphere virtual machine"
 
 }
 
-variable "vm_dns" {
-  description = "DNS for the vSphere virtual machine"
+variable "vm_dns_server_list" {
+  description = "List of DNSs for the vSphere virtual machine"
 }
 
 variable "vm_domain" {
@@ -107,3 +107,10 @@ variable "vm_cdrom_path" {
   description = "the path to the iso file. required for using datastore iso it has conflict with: client device"
 }
 
+variable "vm_public_key" {
+  description = "SSH Publick key" 
+}
+
+variable "vm_ssh_username" {
+  description = "username for ssh"
+}

@@ -1,0 +1,7 @@
+- host: jenkins
+  become: true
+  roles:
+    - role: jenkins
+  
+  vars_files:
+    - vars.yml

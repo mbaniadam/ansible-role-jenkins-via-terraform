@@ -20,6 +20,17 @@ provider "vsphere" {
   allow_unverified_ssl = var.vsphere_unverified_ssl
 }
 
+locals {
+  templatevars = {
+    name         = var.vm_name,
+    ipv4_address = var.vm_ipv4_address,
+    ipv4_gateway = var.vm_ipv4_gateway,
+    dns_server_1 = var.vm_dns_server_list[0],
+    dns_server_2 = var.vm_dns_server_list[1],
+    public_key = var.vm_public_key,
+    ssh_username = var.vm_ssh_username
+  }
+}
 
 data "vsphere_datacenter" "dc" {
   name = var.vsphere_datacenter
@@ -103,5 +114,23 @@ resource "vsphere_virtual_machine" "vm" {
     # vsphere_host_virtual_switch.host_vswitch
     data.vsphere_network.vm_vlan
   ]
+
+
+    extra_config = {
+    "guestinfo.metadata"          = base64encode(templatefile("${path.module}/template/metadata.yml", local.templatevars))
+    "guestinfo.metadata.encoding" = "base64"
+    "guestinfo.userdata"          = base64encode(templatefile("${path.module}/template/userdata.yml", local.templatevars))
+    "guestinfo.userdata.encoding" = "base64"
+  }
+  lifecycle {
+    ignore_changes = [
+      annotation,
+      clone[0].template_uuid,
+      clone[0].customize[0].dns_server_list,
+      clone[0].customize[0].network_interface[0]
+    ]
+  }
+
+
 }
 
