@@ -1,15 +1,16 @@
 ---
 # vars file for jenkins
-java: "java-1.8.0"
-repos:
-  jenkins:
-    name: "jenkins"
-    url: "https://pkg.jenkins.io/debian-stable/"
-    description: "Jenkins repo"
+java: "openjdk-11-jdk"
+
+jenkins_repo:
+  name: "jenkins"
+  url: "deb https://pkg.jenkins.io/debian-stable binary/"
+  description: "Jenkins repo"
 
 packages:
   java:
     name: "{{ java }}"
   jenkins:
     name: "jenkins"
-    
+
+jenkins_key_url: "https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key"

@@ -1,5 +1,5 @@
 [jenkins]
-192.168.56.100
+94.242.53.211
 [jenkins:vars]
-ansible_user=ansible
-ansible_password=ansible
+ansible_user=root
+ansible_password=0n07oEu4KMub87IoBL

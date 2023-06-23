@@ -1,5 +1,10 @@
 ---
 # tasks file for jenkins
+- name: "install gpg required by apt_key"
+  apt:
+    name: gnupg
+    state: present
+
 - name: "add jenkins key"
   apt_key:
     state: present
@@ -7,15 +12,9 @@
 
 - name: "add repository"
   apt_repository: 
-    filename: "{{ item.value.name }}"
-    repo: "{{ item.value.url }}"
-    description: "{{ item.value.description }}"
-  loop:
-    "{{ lookup('dict', repos) }}"
-
-- name: "Update repository"
-  apt:
-    name: update
+    filename: "{{ jenkins_repo.name }}"
+    repo: "{{ jenkins_repo.url }}"
+    state: present
     update_cache: yes
 
 - name: "Install Jenkins and Java"
@@ -29,4 +28,4 @@
   service:
     name: "jenkins"
     state: started
-    enables: yes
+    enabled: yes

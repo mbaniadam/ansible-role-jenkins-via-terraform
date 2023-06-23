@@ -1,6 +1,7 @@
 ---
 - hosts: jenkins
   become: true
+  gather_facts: False
   roles:
     - role: jenkins
   
