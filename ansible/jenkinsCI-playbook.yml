@@ -1,8 +1,8 @@
 ---
-- host: jenkins
+- hosts: jenkins
   become: true
   roles:
     - role: jenkins
   
   vars_files:
-    - vars.yml
+    - jenkins/vars/main.yml

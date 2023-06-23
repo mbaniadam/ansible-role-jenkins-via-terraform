@@ -1,0 +1,5 @@
+[jenkins]
+192.168.56.100
+[jenkins:vars]
+ansible_user=ansible
+ansible_password=ansible
