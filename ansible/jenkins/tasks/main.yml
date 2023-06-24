@@ -33,3 +33,12 @@
     name: "jenkins"
     state: started
     enabled: yes
+
+- name: "Get Service Status"
+  systemd:
+    name: jenkins
+  register: jenkins_state
+
+- name: Debug
+  debug:
+    var: jenkins_state.status.ActiveState
