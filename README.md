@@ -15,6 +15,9 @@ Terraform
 
 ### Supported Operating Systems
 Redhat
+
 * Ubuntu
+  
 Centos7
+
 Fedora
