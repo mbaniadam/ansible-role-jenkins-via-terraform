@@ -24,6 +24,10 @@
   loop:
     "{{lookup('dict', packages) }}"
 
+- name: "daemon-reload"
+  systemd:
+    daemon_reload: true
+    
 - name: "Starting jenkins" 
   service:
     name: "jenkins"
