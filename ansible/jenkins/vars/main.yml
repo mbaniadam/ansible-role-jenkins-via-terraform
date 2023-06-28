@@ -22,3 +22,7 @@ packages:
 jenkins_key_url: "https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key"
 
 jenkins_config_file: "/etc/default/jenkins"
+
+groovy_script_file: "jenkins/files/basic-security.groovy"
+
+groovy_init_dir: "/var/lib/jenkins/init.groovy.d"

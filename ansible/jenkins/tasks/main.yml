@@ -49,4 +49,15 @@
     path: "{{ jenkins_config_file }}"
     line: JAVA_ARGS="-Djenkins.install.runSetupWizard=false"
 
+- name: "ensure {{ groovy_init_dir }} exists"
+  file:
+    path: "{{ groovy_init_dir }}"
+    state: directory
 
+- name: "Copy default user creation script"
+  copy:
+    src: "{{ groovy_script_file }}"
+    dest: "{{ groovy_init_dir }}/basic-security.groovy"
+    mode: "0777"
+    
+    
