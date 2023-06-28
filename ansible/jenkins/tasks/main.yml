@@ -72,3 +72,14 @@
   retries: 5
   delay: 5
   register: result
+
+
+- name: "Copy plugin installer script"
+  copy:
+    src: "jenkins/files/install-plugin.sh"
+    dest: "{{ ansible_env.HOME }}"
+
+
+- name: "Install plugins"
+  shell:
+    cmd: "/bin/bash install-plugin.sh"
