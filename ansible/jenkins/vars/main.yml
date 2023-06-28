@@ -10,7 +10,15 @@ jenkins_repo:
 packages:
   java:
     name: "{{ java }}"
+  default-jre:
+    name: default-jre
+  gnupg2:
+    name: gnupg2
+  apt-transport-https:
+    name: apt-transport-https
   jenkins:
     name: "jenkins"
 
 jenkins_key_url: "https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key"
+
+jenkins_config_file: "/etc/default/jenkins"

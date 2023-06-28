@@ -42,3 +42,11 @@
 - name: Debug
   debug:
     var: jenkins_state.status.ActiveState
+
+
+- name: "Disable jenkins setup wizard"
+  lineinfile:
+    path: "{{ jenkins_config_file }}"
+    line: JAVA_ARGS="-Djenkins.install.runSetupWizard=false"
+
+
