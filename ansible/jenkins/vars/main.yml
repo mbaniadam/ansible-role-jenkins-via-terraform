@@ -26,3 +26,5 @@ jenkins_config_file: "/etc/default/jenkins"
 groovy_script_file: "jenkins/files/basic-security.groovy"
 
 groovy_init_dir: "/var/lib/jenkins/init.groovy.d"
+
+jenkins_cli_url: "http://127.0.0.1:8080/jnlpJars/jenkins-cli.jar"

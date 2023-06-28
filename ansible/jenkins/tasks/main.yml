@@ -59,5 +59,16 @@
     src: "{{ groovy_script_file }}"
     dest: "{{ groovy_init_dir }}/basic-security.groovy"
     mode: "0777"
-    
-    
+
+- name: "Get Home directory of user"
+  debug: 
+    var: ansible_env.HOME
+
+- name: "Download Jenkins Cli"
+  get_url:
+    url: "{{ jenkins_cli_url }}"
+    dest: "{{ ansible_env.HOME }}"
+    mode: "0777"
+  retries: 5
+  delay: 5
+  register: result
