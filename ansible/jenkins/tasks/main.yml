@@ -98,3 +98,9 @@
 - name: "Install plugins"
   shell:
     cmd: "/bin/bash install-plugin.sh"
+
+- name: "Restarting jenkins to apply configuration" 
+  service:
+    name: "jenkins"
+    state: restarted
+    enabled: yes
