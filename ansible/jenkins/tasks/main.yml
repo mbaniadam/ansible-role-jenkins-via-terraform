@@ -54,11 +54,26 @@
     path: "{{ groovy_init_dir }}"
     state: directory
 
+
+- name: "Restarting jenkins to apply configuration" 
+  service:
+    name: "jenkins"
+    state: restarted
+    enabled: yes
+
 - name: "Copy default user creation script"
   copy:
     src: "{{ groovy_script_file }}"
     dest: "{{ groovy_init_dir }}/basic-security.groovy"
     mode: "0777"
+
+- name: "add user to jenkins group"
+  user:
+    name: "admin"
+    group: "jenkins"
+    shell: /bin/bash
+    append: true
+  
 
 - name: "Get Home directory of user"
   debug: 
