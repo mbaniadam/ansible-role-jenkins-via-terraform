@@ -1,6 +1,5 @@
 #!/bin/bash
 declare -a PluginList=(
-    "blueocean"
     "gitea" 
     "kubernetes" 
     "configuration-as-code"

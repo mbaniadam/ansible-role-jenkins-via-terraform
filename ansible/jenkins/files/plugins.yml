@@ -1,0 +1,19 @@
+plugins:
+  - artifactId: configuration-as-code
+  - artifactId: credentials
+  - artifactId: credentials-binding
+  - artifactId: display-url-api
+  - artifactId: font-awesome-api
+  - artifactId: git
+  - artifactId: git-client
+  - artifactId: git-server
+  - artifactId: github
+  - artifactId: github-api
+  - artifactId: github-branch-source
+  - artifactId: ldap
+  - artifactId: pam-auth
+  - artifactId: pipeline-rest-api
+  - artifactId: plugin-util-api
+  - artifactId: ssh-credentials
+
+ 
