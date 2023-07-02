@@ -2,8 +2,6 @@
 
 import jenkins.model.*
 import hudson.security.*
-import hudson.util*
-import jenkins.install.*
 
 def instance = Jenkins.getInstance()
 
@@ -14,6 +12,7 @@ hudsonRealm.createAccount('admin','admin')
 instance.setSecurityRealm(hudsonRealm)
 
 def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
+strategy.setAllowAnonymousRead(false)
 instance.setAuthorizationStrategy(strategy)
+
 instance.save()
-instance.setInstallState(InstallState.INITIAL_SETUP_COMPLETED)

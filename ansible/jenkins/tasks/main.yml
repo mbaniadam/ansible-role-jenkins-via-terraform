@@ -123,11 +123,11 @@
     dest: "$HOME/plugins.yaml"
     src: "jenkins/files/plugins.yml"
 
-- name: Copy the jenkins.yaml file
-  become: yes
-  copy:
-    dest: "/var/lib/jenkins/jenkins.yaml"
-    src: "jenkins/files/jenkins.yml"
+# - name: Copy the jenkins.yaml file
+#   become: yes
+#   copy:
+#     dest: "/var/lib/jenkins/jenkins.yaml"
+#     src: "jenkins/files/jenkins.yml"
 
 - name: run the jenkins-plugin-manager
   become: yes

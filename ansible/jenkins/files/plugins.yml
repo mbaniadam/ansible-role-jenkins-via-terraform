@@ -1,8 +1,6 @@
 plugins:
-  - artifactId: ace-editor
+  - artifactId: blueocean
   - artifactId: antisamy-markup-formatter
-  - artifactId: apache-httpcomponents-client-4-api
-  - artifactId: bootstrap4-api
   - artifactId: bouncycastle-api
   - artifactId: branch-api
   - artifactId: build-timeout
