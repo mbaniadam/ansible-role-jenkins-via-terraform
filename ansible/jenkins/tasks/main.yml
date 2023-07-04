@@ -17,7 +17,7 @@
     state: present
     update_cache: yes
 
-- name: "Install Jenkins and Java"
+- name: "Install Jenkins, Java and other prerequisite apps"
   apt:
     name: "{{ item.value.name }}"
     state: present
