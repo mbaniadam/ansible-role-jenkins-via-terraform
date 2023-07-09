@@ -28,19 +28,6 @@
   systemd:
     daemon_reload: true
     
-# - name: Create directories for Jenkins
-#   become: yes
-#   file:
-#     path: "{{ item }}"
-#     state: directory
-#     owner: jenkins
-#     group: jenkins
-#     recurse: yes
-#   with_items:
-#     - '/var/cache/jenkins/tmp'
-#     - '/var/cache/jenkins/heapdumps'
-#     - '/var/lib/jenkins/plugins'
-
 - name: Update JENKINS_JAVA_OPTIONS
   become: yes
   lineinfile:
@@ -108,10 +95,9 @@
   shell:
     cmd: "jenkins --version > /var/lib/jenkins/jenkins.install.UpgradeWizard.state /var/lib/jenkins/jenkins.install.InstallUtil.lastExecVersion"
 
-# - name: "Copy plugin installer script"
-#   copy:
-#     src: "jenkins/files/install-plugin.sh"
-#     dest: "{{ ansible_env.HOME }}"
+- name: "Add jenkins to sudoers"
+  shell:
+    cmd: "echo \"jenkins  ALL=(ALL) NOPASSWD: /bin/docker /bin/docker-compose >> /etc/sudoers\""
 
 - name: download jenkins-plugin-manager
   get_url:

@@ -75,3 +75,5 @@ plugins:
   - artifactId: workflow-support
   - artifactId: ws-cleanup
   - artifactId: snyk-security-scanner  
+  - artifactId: sonar
+  - artifactId: slack
