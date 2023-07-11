@@ -7,3 +7,64 @@
   
   vars_files:
     - jenkins/vars/main.yml
+
+
+- hosts: agents
+  become: true
+  gather_facts: true
+  tasks:
+    - name: Install UFW, GNUPG
+      apt:
+        name:
+          - ufw
+          - gnupg
+        state: present
+        update_cache: true
+    - name: Deny everything and enable UFW
+      community.general.ufw:
+        state: enabled
+        policy: deny
+    - name: Allow all access to tcp port 22
+      community.general.ufw:
+        rule: allow
+        port: '22'
+        proto: tcp
+    - name: remove any installed docker
+      apt:
+        name:
+          - docker 
+          - docker-engine 
+          - docker.io 
+          - containerd 
+          - runc 
+        state: absent
+    - name: add docker-ce apt key
+      ansible.builtin.apt_key:
+        url: https://download.docker.com/linux/debian/gpg
+        state: present
+    - name: docker-ce-stable deb repository
+      ansible.builtin.apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/debian bullseye stable
+        state: present
+    - name: Install Docker
+      apt:
+        name: 
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: latest
+    - name: add docker group
+      group:
+        name: docker
+        state: present
+    - name: add $USER to docker group
+      user: 
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+    - name: do a ssh reset in order to reflect the $USER group changes
+      meta: reset_connection
+    - name: start Docker service
+      systemd:
+        name: docker
+        state: restarted  
