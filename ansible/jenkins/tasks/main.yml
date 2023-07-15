@@ -33,7 +33,7 @@
   lineinfile:
     path: "{{ jenkins_config_file }}"
     regexp: ".*-Djava.awt.headless=true.*"
-    line: 'JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djenkins.install.runSetupWizard=false -Dcasc.jenkins.config=/jenkins/casc_configs"'
+    line: 'JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -Djenkins.install.runSetupWizard=false -Dcasc.jenkins.config=jenkins/casc_configs"'
     state: present
 
 - name: update JENKINS_HOME ownership
