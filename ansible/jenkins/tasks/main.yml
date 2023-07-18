@@ -62,6 +62,10 @@
     state: started
     enabled: yes
 
+- name: "remove user creation script"
+  file: "{{ groovy_init_dir }}/basic-security.groovy"
+  state: absent
+
 - name: "Get Service Status"
   systemd:
     name: jenkins

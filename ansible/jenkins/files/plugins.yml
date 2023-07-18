@@ -79,3 +79,4 @@ plugins:
   - artifactId: slack
   - artifactID: prometheus
   - artifactID: github_pullrequest
+  - artifactID: cloudbees-disk-usage-simple
