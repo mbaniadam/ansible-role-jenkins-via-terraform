@@ -39,7 +39,7 @@
     daemon_reload: true
     
 - name: Update JENKINS_JAVA_OPTIONS
-  become: yes
+  become: true
   lineinfile:
     path: "{{ jenkins_config_file }}"
     regexp: ".*-Djava.awt.headless=true.*"
@@ -47,7 +47,7 @@
     state: present
 
 - name: update JENKINS_HOME ownership
-  become: yes
+  become: true
   file:
     path: /var/lib/jenkins
     owner: jenkins
@@ -127,11 +127,11 @@
 
 
 - name: run the jenkins-plugin-manager
-  become: yes
+  become: true
   command: java -jar jenkins-plugin-manager.jar --plugin-file plugins.yaml --plugin-download-directory /var/lib/jenkins/plugins
 
 - name: update JENKINS_HOME ownership
-  become: yes
+  become: true
   file:
     path: /var/lib/jenkins
     owner: jenkins
