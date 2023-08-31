@@ -17,6 +17,16 @@
     state: present
     update_cache: yes
 
+- name: Remove old and conflict
+  apt:
+    name:
+      - docker
+      - docker.io 
+      - containerd.io 
+      - containerd
+      - runc
+    state: absent
+
 - name: "Install Jenkins, Java and other prerequisite apps"
   apt:
     name: "{{ item.value.name }}"
@@ -62,10 +72,6 @@
     state: started
     enabled: yes
 
-- name: "remove user creation script"
-  file: "{{ groovy_init_dir }}/basic-security.groovy"
-  state: absent
-
 - name: "Get Service Status"
   systemd:
     name: jenkins
@@ -103,15 +109,21 @@
   shell:
     cmd: "echo \"jenkins  ALL=(ALL) NOPASSWD: /bin/docker /bin/docker-compose >> /etc/sudoers\""
 
+
 - name: download jenkins-plugin-manager
   get_url:
-    url: https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.11/jenkins-plugin-manager-2.12.11.jar
+    url: https://github.com/jenkinsci/plugin-installation-manager-tool/releases/download/2.12.13/jenkins-plugin-manager-2.12.13.jar
     dest: $HOME/jenkins-plugin-manager.jar
+
+- name: download jenkins WAR file
+  get_url:
+    url: https://get.jenkins.io/war-stable/2.414.1/jenkins.war
+    dest: /usr/share/jenkins/jenkins.war
 
 - name: Copy the plugins.yaml file
   copy:
-    dest: "$HOME/plugins.yaml"
-    src: "jenkins/files/plugins.yml"
+    dest: $HOME/plugins.yaml
+    src: "jenkins/files/plugins.yaml"
 
 
 - name: run the jenkins-plugin-manager
@@ -132,3 +144,8 @@
     name: "jenkins"
     state: restarted
     enabled: yes
+
+- name: "remove user creation script"
+  file: 
+    path: "{{ groovy_init_dir }}/basic-security.groovy"
+    state: absent

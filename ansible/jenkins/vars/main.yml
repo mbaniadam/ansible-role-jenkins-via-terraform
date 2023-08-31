@@ -18,9 +18,9 @@ packages:
     name: "apt-transport-https"
   jenkins:
     name: "jenkins"
-  ufw:
-    name: "docker.io"
   docker:
+    name: "docker.io"
+  docker-compose:
     name: "docker-compose"
 
 jenkins_key_url: "https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key"

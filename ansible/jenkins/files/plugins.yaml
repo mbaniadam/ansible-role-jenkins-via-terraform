@@ -1,0 +1,9 @@
+plugins:
+  - artifactId: blueocean
+  - artifactId: github
+  - artifactId: github-api
+  - artifactId: github-branch-source
+  - artifactId: slack
+  - artifactId: prometheus
+  - artifactId: github-pullrequest
+  - artifactId: docker-plugin
