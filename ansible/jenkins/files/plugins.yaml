@@ -7,3 +7,4 @@ plugins:
   - artifactId: prometheus
   - artifactId: github-pullrequest
   - artifactId: docker-plugin
+  - artifactId: workflow-aggregator
