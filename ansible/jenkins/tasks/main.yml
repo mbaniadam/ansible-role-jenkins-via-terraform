@@ -129,6 +129,7 @@
 - name: run the jenkins-plugin-manager
   become: yes
   command: java -jar jenkins-plugin-manager.jar --plugin-file plugins.yaml --plugin-download-directory /var/lib/jenkins/plugins
+
 - name: update JENKINS_HOME ownership
   become: yes
   file:
@@ -137,7 +138,6 @@
     group: jenkins
     state: directory
     recurse: yes
-
 
 - name: "Restarting jenkins to apply configuration" 
   service:
