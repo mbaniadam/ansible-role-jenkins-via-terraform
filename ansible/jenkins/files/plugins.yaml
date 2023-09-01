@@ -8,3 +8,4 @@ plugins:
   - artifactId: github-pullrequest
   - artifactId: docker-plugin
   - artifactId: workflow-aggregator
+  - artifactId: publish-over-ssh
